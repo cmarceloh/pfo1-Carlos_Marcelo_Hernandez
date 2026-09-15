@@ -39,6 +39,9 @@ body {
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
+  color: var(--blanco);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 /* Ocultar elementos del menú hamburguesa en PC */
@@ -207,6 +210,9 @@ h2 {
 
 .curso-img {
   width: 100%;
+  height: 180px; /* <--- Altura fija para todas las imágenes */
+  object-fit: cover; /* <--- Recorta la imagen proporcionalmente para que llene el espacio sin deformarse */
+  object-position: top; /* <--- Asegura que se vea la parte superior del certificado (importante para los verticales) */
   border-radius: 4px;
   margin-bottom: 1rem;
 }
