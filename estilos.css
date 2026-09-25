@@ -7,16 +7,45 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  color: #333;
+  color: var(--texto);
+  background-color: var(--fondo-pagina);
   line-height: 1.6;
 }
 
-/* Colores: Azul oscuro / Celeste */
+/* Paleta: grafito / verde agua */
 :root {
-  --azul-oscuro: #0b2b5e;
-  --celeste: #3a86ff;
+  color-scheme: light;
+  --azul-oscuro: #24313a;
+  --celeste: #18a6a3;
+  --fondo-header: #2c3a42;
+  --fondo-footer: #172126;
   --fondo-claro: #f4f7f6;
+  --fondo-pagina: #ffffff;
+  --fondo-superficie: #ffffff;
+  --fondo-menu: #24313a;
+  --texto: #333333;
+  --borde: #d8e5f0;
+  --borde-imagen: #b8c8d8;
+  --fondo-input: #ffffff;
+  --fondo-accion: #147f7b;
   --blanco: #ffffff;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --azul-oscuro: #e5efed;
+  --celeste: #54d1c5;
+  --fondo-header: #1b292f;
+  --fondo-footer: #111a1e;
+  --fondo-claro: #202e34;
+  --fondo-pagina: #172126;
+  --fondo-superficie: #24343a;
+  --fondo-menu: #111a1e;
+  --texto: #e1e9e7;
+  --borde: #40545a;
+  --borde-imagen: #53666b;
+  --fondo-input: #1b292f;
+  --fondo-accion: #0f756e;
 }
 
 .bg-claro {
@@ -25,7 +54,7 @@ body {
 
 /* --- HEADER Y NAVEGACIÓN --- */
 .header {
-  background-color: var(--azul-oscuro);
+  background-color: var(--fondo-header);
   color: var(--blanco);
   padding: 1rem 5%;
   display: flex;
@@ -41,13 +70,52 @@ body {
   font-weight: 700;
   color: var(--blanco);
   text-decoration: none;
-  transition: color 0.3s ease;
+  display: inline-block;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.logo:hover {
+  color: #8be3d7;
+  transform: scale(1.05);
 }
 
 /* Ocultar elementos del menú hamburguesa en PC */
 .menu-toggle,
 .menu-icon {
   display: none;
+}
+
+.boton-tema {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--blanco);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.boton-tema:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--celeste);
+  transform: rotate(-10deg);
+}
+
+.boton-tema:focus-visible,
+.nav a:focus-visible,
+.btn-primario:focus-visible,
+.btn-ver-mas:focus-visible {
+  outline: 3px solid var(--celeste);
+  outline-offset: 3px;
 }
 
 .nav ul {
@@ -90,12 +158,41 @@ h2 {
   margin: 0 auto;
 }
 
-.foto-perfil {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%; /* Foto redonda y moderna */
-  object-fit: cover;
+.marco-foto {
+  width: min(250px, 80vw);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  flex: 0 0 auto;
+  background-color: var(--fondo-claro);
+  border: 8px solid var(--blanco);
+  border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.foto-perfil {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  transition: transform 0.35s ease;
+}
+
+.marco-foto:hover .foto-perfil {
+  transform: scale(1.05);
+}
+
+.marco-foto:hover {
+  border-color: var(--celeste);
+  box-shadow:
+    0 0 0 4px rgba(58, 134, 255, 0.18),
+    0 8px 20px rgba(11, 43, 94, 0.22);
 }
 
 .datos {
@@ -117,7 +214,7 @@ h2 {
   display: inline-block;
   margin-top: 1.5rem;
   padding: 0.8rem 1.5rem;
-  background-color: var(--celeste);
+  background-color: var(--fondo-accion);
   color: var(--blanco);
   text-decoration: none;
   border-radius: 5px;
@@ -130,7 +227,7 @@ h2 {
 }
 
 .btn-primario:hover {
-  background-color: var(--azul-oscuro);
+  background-color: var(--fondo-menu);
   transform: translateY(-3px);
 }
 
@@ -144,12 +241,29 @@ h2 {
 }
 
 .card {
-  background-color: var(--blanco);
+  background-color: var(--fondo-superficie);
   padding: 2rem;
   border-radius: 8px;
+  border: 2px solid var(--borde);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   font-weight: 700;
   color: var(--azul-oscuro);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.card:hover {
+  background-color: var(--fondo-claro);
+  border-color: var(--celeste);
+  box-shadow:
+    0 0 0 4px rgba(58, 134, 255, 0.14),
+    0 10px 18px rgba(11, 43, 94, 0.14);
+  color: var(--celeste);
+  transform: translateY(-6px);
 }
 
 /* --- CURSOS: SISTEMA DE PAGINACIÓN SOLO CSS --- */
@@ -196,11 +310,11 @@ h2 {
 
 /* Estilo de las tarjetas de curso */
 .curso-item {
-  background-color: var(--blanco);
+  background-color: var(--fondo-superficie);
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  width: 300px;
+  width: min(300px, 100%);
   transition: transform 0.3s ease;
 }
 
@@ -214,7 +328,18 @@ h2 {
   object-fit: cover; /* <--- Recorta la imagen proporcionalmente para que llene el espacio sin deformarse */
   object-position: top; /* <--- Asegura que se vea la parte superior del certificado (importante para los verticales) */
   border-radius: 4px;
+  border: 3px solid var(--borde-imagen);
   margin-bottom: 1rem;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.curso-item:hover .curso-img {
+  border-color: var(--celeste);
+  box-shadow:
+    0 0 0 4px rgba(58, 134, 255, 0.16),
+    0 6px 16px rgba(11, 43, 94, 0.2);
 }
 
 /* --- BOTONES VER MÁS / OCULTAR (elegantes) --- */
@@ -323,7 +448,7 @@ h2 {
   max-width: 600px;
   margin: 0 auto;
   text-align: left;
-  background: var(--blanco);
+  background: var(--fondo-superficie);
   padding: 2.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -347,11 +472,19 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-family: inherit;
+  background-color: var(--fondo-input);
+  color: var(--texto);
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  outline: 2px solid var(--celeste);
+  outline-offset: 1px;
 }
 
 /* --- FOOTER --- */
 .footer {
-  background-color: var(--azul-oscuro);
+  background-color: var(--fondo-footer);
   color: var(--blanco);
   text-align: center;
   padding: 2rem;
@@ -373,7 +506,7 @@ h2 {
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: var(--azul-oscuro);
+    background-color: var(--fondo-menu);
   }
 
   .nav ul {

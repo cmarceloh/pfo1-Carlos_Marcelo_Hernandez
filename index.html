@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="estilos.css" />
+    <script src="js/tema.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -17,6 +18,15 @@
       <!-- Hack de Menú Hamburguesa solo con CSS -->
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <button
+        type="button"
+        class="boton-tema"
+        aria-label="Cambiar a modo oscuro"
+        aria-pressed="false"
+        title="Cambiar a modo oscuro"
+      >
+        <span aria-hidden="true">&#9790;</span>
+      </button>
 
       <nav class="nav">
         <ul>
@@ -33,11 +43,13 @@
       <section id="sobre-mi" class="hero">
         <div class="perfil">
           <!-- Foto de perfil en la carpeta media -->
-          <img
-            src="media/image_02487e.png"
-            alt="Foto de perfil de Carlos Marcelo Hernandez"
-            class="foto-perfil"
-          />
+          <div class="marco-foto">
+            <img
+              src="media/image_02487e.png"
+              alt="Foto de perfil de Carlos Marcelo Hernandez"
+              class="foto-perfil"
+            />
+          </div>
           <div class="datos">
             <h1>Carlos Marcelo Hernandez</h1>
             <h2>Desarrollador de Software en formación</h2>
